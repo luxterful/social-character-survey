@@ -29,12 +29,13 @@ console.log(mainStore.value)
         </button>
       </router-link>
       <div>oder</div>
-
-      <button
-        class="bg-slate-200 p-8 rounded-md shadow-md w-56 h-56 hover:scale-105 hover:shadow-lg transition-all duration-300"
-      >
-        Links für Freunde erstellen
-      </button>
+      <router-link to="/invite">
+        <button
+          class="bg-slate-200 p-8 rounded-md shadow-md w-56 h-56 hover:scale-105 hover:shadow-lg transition-all duration-300"
+        >
+          Links für Freunde erstellen
+        </button>
+      </router-link>
     </div>
   </div>
 </template>

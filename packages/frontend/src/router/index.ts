@@ -11,14 +11,18 @@ const router = createRouter({
     {
       path: '/me',
       name: 'me',
-      component: () => import('../views/HomeView.vue')
+      component: () => import('../views/MyQuestionnaireView.vue')
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue')
+      path: '/invite',
+      name: 'invite',
+      component: () => import('../views/InviteView.vue')
     },
-
+    {
+      path: '/invite/:value',
+      name: 'invite-questionnair',
+      component: () => import('../views/InviteQuestionnaireView.vue')
+    },
     {
       path: '/result/:value',
       name: 'result',
