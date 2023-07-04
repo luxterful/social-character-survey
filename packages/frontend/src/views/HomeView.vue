@@ -34,7 +34,7 @@ function answer(value: 'J' | 'V' | 'N') {
 </script>
 
 <template>
-  <div class="mx-auto container h-5">
+  <div class="mx-auto container">
     <div class="text-center">
       <button
         class="bg-slate-400 p-1 rounded-md disabled:opacity-30"

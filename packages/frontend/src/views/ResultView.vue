@@ -21,24 +21,17 @@ const chartOptions = computed(() => ({
       show: false
     }
   },
-  xaxis: {
-    categories: Object.keys(labelMapping).map((val) => labelMapping[val])
-  },
-  yaxis: {
-    max: 100
-  }
+  labels: Object.keys(labelMapping).map((val) => labelMapping[val])
 }))
 
-const series = computed(() => [
-  {
-    name: 'score',
-    data: resultsPercentage
-  }
-])
+const series = resultsPercentage
 </script>
 
 <template>
-  <div class="mx-auto container h-5">
-    <VueApexCharts type="bar" :options="chartOptions" :series="series" />
+  <div class="mx-auto container">
+    <h1 class="text-2xl font-extrabold">Ergebnis</h1>
+    <div class="mx-auto container h-5">
+      <VueApexCharts type="pie" width="800" :options="chartOptions" :series="series" />
+    </div>
   </div>
 </template>
