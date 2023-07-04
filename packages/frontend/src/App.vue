@@ -10,5 +10,22 @@ import { RouterLink, RouterView } from 'vue-router'
     </nav>
   </!--header-->
 
-  <RouterView class="p-4" />
+  <router-view v-slot="{ Component }">
+    <transition name="scale" mode="out-in">
+      <component :is="Component" class="p-2" />
+    </transition>
+  </router-view>
 </template>
+
+<style>
+.scale-enter-active,
+.scale-leave-active {
+  transition: all 0.25s ease;
+}
+
+.scale-enter-from,
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
+}
+</style>

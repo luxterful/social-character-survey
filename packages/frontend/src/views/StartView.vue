@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useLocalStorage } from '@/composables/useLocalStorage'
+
+const { mainStore } = useLocalStorage()
+console.log(mainStore.value)
+</script>
 
 <template>
   <div class="mx-auto container flex flex-col gap-4 items-center">
@@ -10,13 +15,26 @@
       Im folgenden erwarten dich 104 Fragen um deinen Persönlichkeitstypen herauszufinden. <br />
       Du kannst auch links erstellen um herauszufinden wie dich deine Freunde einschätzen
     </p>
-    <div class="flex gap-4 mt-2">
+    <p class="text-center">Die Fragen entstammen aus folgendem Buch</p>
+    <div v-if="mainStore.me">
+      Du hast bereits einen Test gemacht.
+      <a class="underline" :href="`/result/${mainStore.me}`">Hier kommst du zu den Ergebnissen</a>
+    </div>
+    <div class="flex gap-4 mt-2 items-center">
       <router-link to="/me">
-        <button class="bg-slate-200 p-2 rounded-md shadow-md">
+        <button
+          class="bg-slate-200 p-8 rounded-md shadow-md w-56 h-56 hover:scale-105 hover:shadow-lg transition-all duration-300"
+        >
           Meinen Persönlichkeitstest machen
         </button>
       </router-link>
-      <button class="bg-slate-200 p-2 rounded-md shadow-md">Links für Freunde erstellen</button>
+      <div>oder</div>
+
+      <button
+        class="bg-slate-200 p-8 rounded-md shadow-md w-56 h-56 hover:scale-105 hover:shadow-lg transition-all duration-300"
+      >
+        Links für Freunde erstellen
+      </button>
     </div>
   </div>
 </template>

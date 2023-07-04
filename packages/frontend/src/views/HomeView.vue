@@ -3,8 +3,10 @@ import { CheckIcon, XMarkIcon } from '@heroicons/vue/24/solid'
 import { getQuestions } from '@/utils/fileLoader'
 import { useQuestionnaire } from '@/composables/useQuestionnaire'
 import { useRouter } from 'vue-router'
+import { useLocalStorage } from '@/composables/useLocalStorage'
 
 const router = useRouter()
+const { mainStore } = useLocalStorage()
 
 const questions = getQuestions()
 
@@ -28,7 +30,9 @@ function answer(value: 'J' | 'V' | 'N') {
   } else {
     const resultString = getResultString()
     console.log(resultString)
-    router.push({ name: 'result', params: { value: btoa(resultString) } })
+    const resultStringBase64 = btoa(resultString)
+    mainStore.value.me = resultStringBase64
+    router.push({ name: 'result', params: { value: resultStringBase64 } })
   }
 }
 </script>
