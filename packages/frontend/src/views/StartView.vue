@@ -33,7 +33,7 @@ console.log(mainStore.value)
         <button
           class="bg-slate-200 p-8 rounded-md shadow-md w-56 h-56 hover:scale-105 hover:shadow-lg transition-all duration-300"
         >
-          Links für Freunde erstellen
+          Freunde einladen den Test über dich zu machen
         </button>
       </router-link>
     </div>

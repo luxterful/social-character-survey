@@ -24,6 +24,11 @@ const router = createRouter({
       component: () => import('../views/InviteQuestionnaireView.vue')
     },
     {
+      path: '/invite/:value/start',
+      name: 'invite-questionnair-start',
+      component: () => import('../views/StartInviteQuestionnaireView.vue')
+    },
+    {
       path: '/result/:value',
       name: 'result',
       component: () => import('../views/ResultView.vue')

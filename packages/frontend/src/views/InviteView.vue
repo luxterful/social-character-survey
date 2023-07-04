@@ -4,6 +4,7 @@ import { ref } from 'vue'
 const name = ref('')
 const pronone = ref('he')
 const link = ref<string | null>(null)
+const copyClicked = ref(false)
 
 function generate() {
   const baseUrl = `${window.location.protocol}//${window.location.host}/invite/`
@@ -12,7 +13,13 @@ function generate() {
 }
 
 function copy() {
-  if (link.value) navigator.clipboard.writeText(link.value)
+  if (link.value) {
+    navigator.clipboard.writeText(link.value)
+    copyClicked.value = true
+    setTimeout(() => {
+      copyClicked.value = false
+    }, 1000)
+  }
 }
 </script>
 
@@ -63,19 +70,38 @@ function copy() {
         <span>{{ link }}</span>
       </span>
 
-      <svg
-        class="shrink-0 h-5 w-5 transition text-gray-500 group-hover:text-white"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        aria-hidden="true"
-        @click="copy"
-      >
-        <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
-        <path
-          d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5zM15 11h2a1 1 0 110 2h-2v-2z"
-        ></path>
-      </svg>
+      <div class="cursor-pointer" :class="{ copy: copyClicked }">
+        <svg
+          class="shrink-0 h-5 w-5 transition text-gray-500 group-hover:text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+          @click="copy"
+        >
+          <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+          <path
+            d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5zM15 11h2a1 1 0 110 2h-2v-2z"
+          ></path>
+        </svg>
+      </div>
     </code>
   </div>
 </template>
+
+<style scoped>
+.copy {
+  @apply relative;
+}
+.copy::after {
+  content: 'copied';
+  @apply absolute;
+  @apply text-white;
+  @apply bg-slate-600;
+  @apply p-1;
+  @apply rounded-md;
+  @apply mx-auto;
+  @apply text-sm;
+  top: -4px;
+}
+</style>
