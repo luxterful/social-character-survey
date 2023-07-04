@@ -71,8 +71,5 @@ function answer(value: 'J' | 'V' | 'N') {
         <CheckIcon class="w-6 h-6" />
       </button>
     </div>
-    <div>
-      {{ results }}
-    </div>
   </div>
 </template>
