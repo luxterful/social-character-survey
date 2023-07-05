@@ -1,4 +1,4 @@
-import { mapResult, maxScore } from '@/utils/resultMapping'
+import { mapResult, categoryMapping } from '@/utils/resultMapping'
 
 export function useResult(resultStringBase64: string) {
   const resultString = atob(resultStringBase64)
@@ -31,7 +31,7 @@ export function useResult(resultStringBase64: string) {
 
   return Object.keys(resultTypes).map((key) => {
     const res = resultTypes[key]
-    const max = maxScore[key]
+    const max = (categoryMapping as any)[key].max
     if (res === 0) return 0
     return Math.floor((res / max) * 100)
   })

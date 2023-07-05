@@ -1,4 +1,6 @@
-const scoreMapping: any = {
+import type { CategoryLetter, CategoryMapping, ScoreMapping } from '@/types'
+
+const scoreMapping: ScoreMapping = {
   1: { j: { J: 2, V: 1 } },
   2: { j: { J: 2, V: 1 } },
   3: { j: { J: 2, V: 1 } },
@@ -105,46 +107,30 @@ const scoreMapping: any = {
   104: { d: { J: 2, V: 1 } }
 }
 
-export const labelMapping: any = {
-  a: 'Wachsam',
-  b: 'Ungesellig',
-  c: 'Exzentrisch',
-  d: 'Abendteuerlich',
-  e: 'Sprunghaft',
-  f: 'Dramatisch',
-  g: 'Selbstbewusst',
-  h: 'Sensibel',
-  i: 'Anhänglich',
-  j: 'Gewissenhaft',
-  k: 'Lässig',
-  l: 'Aggressiv',
-  m: 'Aufopfernd'
-}
-
-export const maxScore: any = {
-  a: 14,
-  b: 14,
-  c: 18,
-  d: 22,
-  e: 16,
-  f: 16,
-  g: 18,
-  h: 14,
-  i: 18,
-  j: 18,
-  k: 18,
-  l: 16,
-  m: 16
+export const categoryMapping: CategoryMapping = {
+  a: { label: 'Wachsam', max: 14 },
+  b: { label: 'Ungesellig', max: 14 },
+  c: { label: 'Exzentrisch', max: 18 },
+  d: { label: 'Abendteuerlich', max: 22 },
+  e: { label: 'Sprunghaft', max: 16 },
+  f: { label: 'Dramatisch', max: 16 },
+  g: { label: 'Selbstbewusst', max: 18 },
+  h: { label: 'Sensibel', max: 14 },
+  i: { label: 'Anhänglich', max: 18 },
+  j: { label: 'Gewissenhaft', max: 18 },
+  k: { label: 'Lässig', max: 18 },
+  l: { label: 'Aggressiv', max: 16 },
+  m: { label: 'Aufopfernd', max: 16 }
 }
 
 export function mapResult(questionNumber: number, value: 'J' | 'V' | 'N') {
   const q = scoreMapping[questionNumber]
-  const keys = Object.keys(q)
+  const categoryLetters = Object.keys(q) as CategoryLetter[]
   const res: any = {}
-  for (const key of keys) {
-    const score = q[key][value]
+  for (const letter of categoryLetters) {
+    const score = q[letter]![value]
     if (score) {
-      res[key] = score
+      res[letter] = score
     }
   }
   return res

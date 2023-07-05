@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { labelMapping } from '@/utils/resultMapping'
+import { categoryMapping } from '@/utils/resultMapping'
 import VueApexCharts from 'vue3-apexcharts'
 import { useRoute } from 'vue-router'
 import { useResult } from '@/composables/useResult'
@@ -27,7 +27,7 @@ const chartOptions = computed(() => ({
       show: false
     }
   },
-  labels: Object.keys(labelMapping).map((val) => labelMapping[val])
+  labels: Object.keys(categoryMapping).map((val) => categoryMapping[val].label)
 }))
 
 const series = resultsPercentage
@@ -63,7 +63,7 @@ function confirmSave() {
       class="w-full p-2 rounded-md bg-teal-100 border-t-4 border-teal-500 text-teal-900"
       v-if="isSavedLocally"
     >
-      Dieses Ergebnis ist im Browser gespeichert
+      Dieses Ergebnis ist im Browser gespeichert unter dem Namen "{{ isSavedLocally.name }}"
     </div>
 
     <div class="mx-auto container h-5">
