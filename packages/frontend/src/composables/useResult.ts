@@ -3,12 +3,7 @@ import { mapResult, maxScore } from '@/utils/resultMapping'
 export function useResult(resultStringBase64: string) {
   const resultString = atob(resultStringBase64)
 
-  const resultArray = resultString.split('') as ('J' | 'V' | 'N')[]
-
-  /*.reduce((acc, val, index) => {
-    acc[index + 1] = val
-    return acc
-  }, {} as any)*/
+  const resultArray = resultString.split(';')[0].split('') as ('J' | 'V' | 'N')[]
 
   const resultTypes: any = {
     a: 0,
@@ -27,15 +22,12 @@ export function useResult(resultStringBase64: string) {
   }
 
   for (const [idx, result] of resultArray.entries()) {
-    console.log(idx)
     const res = mapResult(idx + 1, result)
 
     for (const key of Object.keys(res)) {
       resultTypes[key] += res[key]
     }
   }
-
-  console.log(resultTypes)
 
   return Object.keys(resultTypes).map((key) => {
     const res = resultTypes[key]

@@ -14,10 +14,9 @@ const {
   back,
   canGoBack,
   canGoNext,
-  getResultString,
+  generateResultString,
   next,
   pick,
-  results,
   selectedQuestion,
   selectedQuestionNumber,
   totalQuestionCount
@@ -28,11 +27,9 @@ function answer(value: 'J' | 'V' | 'N') {
   if (canGoNext.value) {
     next()
   } else {
-    const resultString = getResultString()
-    console.log(resultString)
-    const resultStringBase64 = btoa(resultString)
-    mainStore.value.me = resultStringBase64
-    router.push({ name: 'result', params: { value: resultStringBase64 } })
+    const resultString = generateResultString()
+    mainStore.value.me = resultString
+    router.push({ name: 'result', params: { value: resultString } })
   }
 }
 </script>

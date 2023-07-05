@@ -29,10 +29,13 @@ export function useQuestionnaire(questions: string[]) {
     results.value[selectedQuestionNumber.value] = value
   }
 
-  function getResultString() {
-    return Object.keys(results.value)
+  function generateResultString() {
+    const resultRaw = Object.keys(results.value)
       .map((key) => results.value[key])
       .join('')
+    const timestamp = new Date().getTime()
+
+    return btoa(`${resultRaw};${timestamp}`)
   }
 
   return {
@@ -45,6 +48,6 @@ export function useQuestionnaire(questions: string[]) {
     canGoBack,
     results,
     pick,
-    getResultString
+    generateResultString
   }
 }
