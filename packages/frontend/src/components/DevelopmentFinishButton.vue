@@ -1,7 +1,7 @@
 <template>
   <div
     @click="$emit('click')"
-    class="dev-button cursor-pointer rounded-md overflow-hidden border border-black"
+    class="dev-button cursor-pointer rounded-md overflow-hidden border border-black w-auto inline-block"
   >
     <div class="m-1 bg-yellow-200 p-1 rounded-md border border-black">
       <slot></slot>

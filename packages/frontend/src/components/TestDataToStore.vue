@@ -1,10 +1,11 @@
 <template>
-  <button @click="setTestDataIntoStore" class="p-2 rounded-md bg-red-400">
+  <DevelopmentFinishButton @click="setTestDataIntoStore">
     test data to store
-  </button>
+  </DevelopmentFinishButton>
 </template>
 
 <script setup lang="ts">
+import DevelopmentFinishButton from './DevelopmentFinishButton.vue'
 import { useLocalStorage } from '@/composables/useLocalStorage'
 
 const demoStoreData = {
