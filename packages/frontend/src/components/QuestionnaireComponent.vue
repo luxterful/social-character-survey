@@ -4,6 +4,7 @@ import { useQuestionnaire } from '@/composables/useQuestionnaire'
 import { isDev, finish } from '@/utils/development'
 import { computed } from 'vue'
 import type { Questionnaire } from '@/types'
+import DevelopmentFinishButton from './DevelopmentFinishButton.vue'
 
 const props = defineProps<{ questions: Questionnaire; replaceName?: string }>()
 const emits = defineEmits<{ (e: 'lastQuestionAnswered', data: string): void }>()
@@ -81,7 +82,9 @@ const selectedQuestionReplaced = computed(() =>
       </button>
     </div>
     <div class="flex justify-center" v-if="isDev">
-      <button @click="clickFinish">finish</button>
+      <DevelopmentFinishButton @click="clickFinish"
+        >click button to set all results</DevelopmentFinishButton
+      >
     </div>
   </div>
 </template>
