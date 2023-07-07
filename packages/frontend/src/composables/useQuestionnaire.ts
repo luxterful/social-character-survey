@@ -1,6 +1,7 @@
+import type { Questionnaire } from '@/types'
 import { computed, ref } from 'vue'
 
-export function useQuestionnaire(questions: string[]) {
+export function useQuestionnaire(questions: Questionnaire) {
   const totalQuestionCount = computed(() => Object.keys(questions).length)
 
   const selectedQuestionNumber = ref(1)

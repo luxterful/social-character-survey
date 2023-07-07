@@ -3,8 +3,9 @@ import { CheckIcon, XMarkIcon, ArrowUturnLeftIcon } from '@heroicons/vue/24/soli
 import { useQuestionnaire } from '@/composables/useQuestionnaire'
 import { isDev, finish } from '@/utils/development'
 import { computed } from 'vue'
+import type { Questionnaire } from '@/types'
 
-const props = defineProps<{ questions: string[]; replaceName?: string }>()
+const props = defineProps<{ questions: Questionnaire; replaceName?: string }>()
 const emits = defineEmits<{ (e: 'lastQuestionAnswered', data: string): void }>()
 
 const {

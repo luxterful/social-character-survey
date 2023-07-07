@@ -54,3 +54,7 @@ export type CategoryMapping = {
     max: number
   }
 }
+
+export interface Questionnaire {
+  [questionNumber: number]: string
+}
