@@ -76,7 +76,9 @@ function confirmSave() {
       </div>
 
       <div class="mx-auto container h-5">
-        <VueApexCharts type="pie" width="800" :options="chartOptions" :series="series" />
+        <div class="max-w-screen-md">
+          <VueApexCharts type="pie" width="100%" :options="chartOptions" :series="series" />
+        </div>
       </div>
     </div>
     <TransitionRoot
