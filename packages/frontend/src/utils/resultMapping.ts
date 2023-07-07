@@ -1,4 +1,4 @@
-import type { CategoryLetter, CategoryMapping, ScoreMapping } from '@/types'
+import type { CategoryLetter, CategoryMapping, Score, ScoreMapping } from '@/types'
 
 const scoreMapping: ScoreMapping = {
   1: { j: { J: 2, V: 1 } },
@@ -111,7 +111,7 @@ export const categoryMapping: CategoryMapping = {
   a: { label: 'Wachsam', max: 14 },
   b: { label: 'Ungesellig', max: 14 },
   c: { label: 'Exzentrisch', max: 18 },
-  d: { label: 'Abendteuerlich', max: 22 },
+  d: { label: 'Abenteuerlich', max: 22 },
   e: { label: 'Sprunghaft', max: 16 },
   f: { label: 'Dramatisch', max: 16 },
   g: { label: 'Selbstbewusst', max: 18 },
@@ -126,7 +126,7 @@ export const categoryMapping: CategoryMapping = {
 export function mapResult(questionNumber: number, value: 'J' | 'V' | 'N') {
   const q = scoreMapping[questionNumber]
   const categoryLetters = Object.keys(q) as CategoryLetter[]
-  const res: any = {}
+  const res: Partial<Score> = {}
   for (const letter of categoryLetters) {
     const score = q[letter]![value]
     if (score) {

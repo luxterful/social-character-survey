@@ -34,6 +34,11 @@ const router = createRouter({
       component: () => import('../views/ResultView.vue')
     },
     {
+      path: '/compare',
+      name: 'compare',
+      component: () => import('../views/CompareView.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       redirect: () => ({ name: 'home' })

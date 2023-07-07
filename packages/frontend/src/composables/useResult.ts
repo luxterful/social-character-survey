@@ -1,11 +1,12 @@
+import type { CategoryLetter, Result, Score } from '@/types'
 import { mapResult, categoryMapping } from '@/utils/resultMapping'
 
-export function useResult(resultStringBase64: string) {
+export function useResult(resultStringBase64: string): Result {
   const resultString = atob(resultStringBase64)
 
   const resultArray = resultString.split(';')[0].split('') as ('J' | 'V' | 'N')[]
 
-  const resultTypes: any = {
+  const resultPerCategory: Score = {
     a: 0,
     b: 0,
     c: 0,
@@ -22,17 +23,25 @@ export function useResult(resultStringBase64: string) {
   }
 
   for (const [idx, result] of resultArray.entries()) {
-    const res = mapResult(idx + 1, result)
+    const questionNumber = idx + 1
+    const res = mapResult(questionNumber, result)
 
-    for (const key of Object.keys(res)) {
-      resultTypes[key] += res[key]
+    for (const key of Object.keys(res) as CategoryLetter[]) {
+      resultPerCategory[key] += res[key]!
     }
   }
 
-  return Object.keys(resultTypes).map((key) => {
-    const res = resultTypes[key]
-    const max = (categoryMapping as any)[key].max
-    if (res === 0) return 0
-    return Math.floor((res / max) * 100)
+  const result: Result = Object.keys(categoryMapping).map((catLetter) => {
+    const { label, max } = categoryMapping[catLetter as CategoryLetter]
+    const points = (resultPerCategory as any)[catLetter] as number
+    return {
+      label,
+      max,
+      letter: catLetter as CategoryLetter,
+      percentage: points === 0 ? points : Math.floor((points / max) * 100),
+      points
+    }
   })
+
+  return result
 }

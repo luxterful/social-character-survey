@@ -3,7 +3,7 @@ import { CheckIcon, XMarkIcon } from '@heroicons/vue/24/solid'
 import { getQuestions } from '@/utils/fileLoader'
 import { useQuestionnaire } from '@/composables/useQuestionnaire'
 import { useRoute, useRouter } from 'vue-router'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import ShareLink from '@/components/ShareLink.vue'
 import { isDev, finish } from '@/utils/development'
 
@@ -42,6 +42,8 @@ function answer(value: 'J' | 'V' | 'N') {
 function clickFinish() {
   finish(results, selectedQuestionNumber)
 }
+
+const selectedQuestionReplaced = computed(() => selectedQuestion.value.replace('{name}', name))
 </script>
 
 <template>
@@ -60,7 +62,7 @@ function clickFinish() {
       <div class="text-center py-4">{{ selectedQuestionNumber }} / {{ totalQuestionCount }}</div>
       <div class="mx-auto w-96 bg-neutral-100 rounded-md shadow-md h-[300px] flex items-center">
         <p class="text-lg text-center w-full p-2">
-          {{ name }} {{ pronome }} : {{ selectedQuestion }}
+          {{ selectedQuestionReplaced }}
         </p>
       </div>
       <div class="mx-auto w-96 p-2 mt-2 flex justify-center gap-2">

@@ -18,7 +18,11 @@ console.log(mainStore.value)
     <p class="text-center">Die Fragen entstammen aus folgendem Buch</p>
     <div v-if="mainStore.me">
       Du hast bereits einen Test gemacht.
-      <a class="underline" :href="`/result/${mainStore.me}`">Hier kommst du zu den Ergebnissen</a>
+      <a class="underline" :href="`/result/${mainStore.me}`">Hier kommst du zu deinem Ergebnis</a>
+    </div>
+    <div v-if="mainStore?.others?.length > 0">
+      Du hast bereits Tests die andere über dich gemacht haben im Browser gespeichert.
+      <a class="underline" :href="`/compare`">Hier kannst du die Ergebnisse vergleichen</a>
     </div>
     <div class="flex gap-4 mt-2 items-center">
       <router-link to="/me">

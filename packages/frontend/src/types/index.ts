@@ -1,7 +1,9 @@
 export interface ResultEntry {
-  categoryName: string
-  categoryLetter: CategoryLetter
+  label: string
+  letter: CategoryLetter
   percentage: number
+  points: number
+  max: number
 }
 export type Result = Array<ResultEntry>
 

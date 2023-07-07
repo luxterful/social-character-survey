@@ -4,6 +4,7 @@ import { getQuestions } from '@/utils/fileLoader'
 import { useQuestionnaire } from '@/composables/useQuestionnaire'
 import { useRouter } from 'vue-router'
 import { useLocalStorage } from '@/composables/useLocalStorage'
+import { isDev, finish } from '@/utils/development'
 
 const router = useRouter()
 const { mainStore } = useLocalStorage()
@@ -19,7 +20,8 @@ const {
   pick,
   selectedQuestion,
   selectedQuestionNumber,
-  totalQuestionCount
+  totalQuestionCount,
+  results
 } = useQuestionnaire(questions)
 
 function answer(value: 'J' | 'V' | 'N') {
@@ -31,6 +33,10 @@ function answer(value: 'J' | 'V' | 'N') {
     mainStore.value.me = resultString
     router.push({ name: 'result', params: { value: resultString } })
   }
+}
+
+function clickFinish() {
+  finish(results, selectedQuestionNumber)
 }
 </script>
 
@@ -71,6 +77,9 @@ function answer(value: 'J' | 'V' | 'N') {
       >
         <CheckIcon class="w-6 h-6" />
       </button>
+    </div>
+    <div class="flex justify-center" v-if="isDev">
+      <button @click="clickFinish">finish</button>
     </div>
   </div>
 </template>

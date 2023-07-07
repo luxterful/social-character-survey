@@ -19,5 +19,8 @@
   "devDependencies": {
     "concurrently": "^7.6.0",
     "prettier": "^2.8.4"
+  },
+  "dependencies": {
+    "openai": "^3.3.0"
   }
 }

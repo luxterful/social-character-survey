@@ -1,10 +1,15 @@
 import type { Ref } from 'vue'
-import demodata from '@/assets/examples/l.json?raw'
 
 export const isDev = import.meta.env.DEV
 
 export async function finish(results: Ref<any>, questionNumber: Ref<number>) {
-  results.value = JSON.parse(demodata)
-  console.log(results.value)
+  const res: any = {}
+  const answers = ['J', 'V', 'N']
+
+  for (let i = 1; i <= 104; i++) {
+    res[i] = answers[Math.floor(Math.random() * answers.length)]
+  }
+  results.value = res
+  console.log(res)
   questionNumber.value = 104
 }
