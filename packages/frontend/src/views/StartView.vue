@@ -16,29 +16,27 @@ console.log(mainStore.value)
       Du kannst auch links erstellen um herauszufinden wie dich deine Freunde einschätzen
     </p>
     <p class="text-center">Die Fragen entstammen aus folgendem Buch</p>
-    <div v-if="mainStore.me">
+    <div v-if="mainStore.me" class="text-center">
       Du hast bereits einen Test gemacht.
       <a class="underline" :href="`/result/${mainStore.me}`">Hier kommst du zu deinem Ergebnis</a>
     </div>
-    <div v-if="mainStore?.others?.length > 0">
+    <div v-if="mainStore?.others?.length > 0" class="text-center">
       Du hast bereits Tests die andere über dich gemacht haben im Browser gespeichert.
       <a class="underline" :href="`/compare`">Hier kannst du die Ergebnisse vergleichen</a>
     </div>
-    <div class="flex gap-4 mt-2 items-center">
-      <router-link to="/me">
-        <button
-          class="bg-slate-200 p-8 rounded-md shadow-md w-56 h-56 hover:scale-105 hover:shadow-lg transition-all duration-300"
-        >
-          Meinen Persönlichkeitstest machen
-        </button>
+    <div class="flex gap-4 mt-2 items-center flex-col sm:flex-row">
+      <router-link
+        to="/me"
+        class="bg-slate-200 p-8 rounded-md shadow-md w-full sm:w-56 sm:h-56 hover:scale-105 hover:shadow-lg transition-all duration-300 flex justify-center items-center text-center"
+      >
+        Meinen Persönlichkeitstest machen
       </router-link>
       <div>oder</div>
-      <router-link to="/invite">
-        <button
-          class="bg-slate-200 p-8 rounded-md shadow-md w-56 h-56 hover:scale-105 hover:shadow-lg transition-all duration-300"
-        >
-          Freunde einladen den Test über dich zu machen
-        </button>
+      <router-link
+        to="/invite"
+        class="bg-slate-200 p-8 rounded-md shadow-md w-full sm:w-56 sm:h-56 hover:scale-105 hover:shadow-lg transition-all duration-300 flex justify-center items-center text-center"
+      >
+        Freunde einladen den Test über dich zu machen
       </router-link>
     </div>
   </div>
