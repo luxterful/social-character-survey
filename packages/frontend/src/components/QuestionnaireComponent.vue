@@ -46,40 +46,42 @@ const selectedQuestionReplaced = computed(() =>
 <template>
   <div>
     <div class="text-center">
-      <button
-        class="bg-slate-400 p-1 rounded-md disabled:opacity-30"
+      <div
+        class="bg-slate-400 p-1 rounded-md disabled:opacity-30 cursor-pointer w-auto inline-block"
         @click="back"
         :disabled="!canGoBack"
       >
         <ArrowUturnLeftIcon class="w-6 h-6" />
-      </button>
+      </div>
     </div>
 
     <div class="text-center py-4">{{ selectedQuestionNumber }} / {{ totalQuestionCount }}</div>
-    <div class="mx-auto w-96 bg-neutral-100 rounded-md shadow-md h-[300px] flex items-center">
+    <div
+      class="mx-auto w-full sm:w-96 bg-neutral-100 rounded-md shadow-md h-[300px] flex items-center"
+    >
       <p class="text-lg text-center w-full p-2">
         {{ selectedQuestionReplaced }}
       </p>
     </div>
     <div class="mx-auto w-96 p-2 mt-2 flex justify-center gap-2">
-      <button
-        class="rounded-full hover:bg-red-200 aspect-square w-10 flex justify-center items-center"
+      <div
+        class="rounded-full hover:bg-red-200 aspect-square w-10 flex justify-center items-center cursor-pointer"
         @click="answer('N')"
       >
         <XMarkIcon class="w-6 h-6" />
-      </button>
-      <button
-        class="rounded-full hover:bg-neutral-200 aspect-square w-10 flex justify-center items-center"
+      </div>
+      <div
+        class="rounded-full hover:bg-neutral-200 aspect-square w-10 flex justify-center items-center cursor-pointer"
         @click="answer('V')"
       >
         🤷‍♂️
-      </button>
-      <button
-        class="rounded-full hover:bg-green-200 aspect-square w-10 flex justify-center items-center"
+      </div>
+      <div
+        class="rounded-full hover:bg-green-200 aspect-square w-10 flex justify-center items-center cursor-pointer"
         @click="answer('J')"
       >
         <CheckIcon class="w-6 h-6" />
-      </button>
+      </div>
     </div>
     <div class="flex justify-center" v-if="isDev">
       <DevelopmentFinishButton @click="clickFinish"
