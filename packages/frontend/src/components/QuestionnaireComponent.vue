@@ -63,7 +63,7 @@ const selectedQuestionReplaced = computed(() =>
         {{ selectedQuestionReplaced }}
       </p>
     </div>
-    <div class="mx-auto w-96 p-2 mt-2 flex justify-center gap-2">
+    <div class="mx-auto w-full p-2 mt-2 flex justify-center gap-2">
       <div
         class="rounded-full hover:bg-red-200 aspect-square w-10 flex justify-center items-center cursor-pointer"
         @click="answer('N')"
